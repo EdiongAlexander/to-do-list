@@ -1,0 +1,113 @@
+.scrumboard{
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.scrumboard nav{
+    margin-top: 0px;
+    padding: 5px 40px;
+    background-color: rgb(125, 195, 241);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.var{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+#info{
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.box{
+    width: 40%;
+    height: 400px;
+    box-shadow: 2px 2px 10px -1px royalblue;
+}
+
+.box h3{
+    margin-top: 0px;
+    background-color: rgb(125, 195, 241);
+    color: white;
+    padding: 10px;
+}
+#box{
+    padding-left: 30px;
+}
+
+#modal{
+    width: 60%;
+    height: 200px;
+    margin-top: 20px;
+    margin-left: 105px;
+    background-color: white;
+    box-shadow: 2px 2px 10px -1px royalblue;
+    position: absolute;
+    top: 400px;
+}
+
+.header{
+    background-color: rgb(125, 195, 241);
+    padding: 2px 20px;
+    margin-top: 0;
+    margin-left: 0px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+#modal form{
+    margin-left: 20px;
+}
+
+#modal input{
+    width: 40vw;
+    height: 30px;
+    margin-top: 20px;
+    outline: none;
+    border-radius: 5px;
+    border: solid 1px rgb(125, 195, 241);
+    transition: 0.5s ease;
+}
+
+#modal button{
+    display: block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: solid 1px rgb(125, 195, 241);
+    background-color: rgb(125, 195, 241);
+    color: white;
+}
+
+.add{
+    display: block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: solid 1px rgb(125, 195, 241);
+    background-color: rgb(125, 195, 241);
+    color: white;
+    margin-left: 105px;
+}
+
+#close{
+    cursor: pointer;
+}
+
+.show{
+    display: block;
+}
+
+.hidden{
+    display: none;
+}
