@@ -35,6 +35,13 @@
     width: 40%;
     height: 400px;
     box-shadow: 2px 2px 10px -1px royalblue;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+}
+
+.box:hover{
+    background-color: aqua;
 }
 
 .box h3{

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Data from '../../static/data';
 import './scrumboard.css';
+import Tasks from '../tasks/tasks';
 
 export class Scrumboard extends Component {
-    constructor(){
+    constructor() {
         super();
 
         this.state = {
@@ -31,53 +32,45 @@ export class Scrumboard extends Component {
         })
     }
 
-    handleSubmit =(e) =>{
+    handleSubmit = (e) => {
         e.preventDefault()
         this.setState({
             isOpen: false
         })
     }
 
-  render() {
-    console.log("Logged in as:", Data.fullname)
-    return (
-      <div className='scrumboard'>
-        <nav>
-            <h1>CHATSCRUM</h1>
-            <div className="var">
-                <p>User type: {Data.usertype}</p>
-                <p>Project Name: {Data.projectname}</p>
+    render() {
+        console.log("Logged in as:", Data.fullname)
+        return (
+            <div className='scrumboard'>
+                <nav>
+                    <h1>CHATSCRUM</h1>
+                    <div className="var">
+                        <p>User type: {Data.usertype}</p>
+                        <p>Project Name: {Data.projectname}</p>
+                    </div>
+                </nav>
+
+                <p id="info">Hello {Data.fullname}, Welcome to scrumboard</p>
+
+                <Tasks />
+
+                <div id="modal" className={this.state.isOpen ? "show" : "hidden"}>
+                    <div className="header">
+                        <h3>Add a new task</h3>
+                        <h3 id='close' onClick={this.closeModal}>X</h3>
+                    </div>
+
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" onChange={this.handleChange} />
+                        <button>CONFIRM</button>
+                    </form>
+                </div>
+
+                <button className='add' onClick={this.openModal}>ADD TASK</button>
             </div>
-        </nav>
-
-        <p id="info">Hello {Data.fullname}, Welcome to scrumboard</p>
-
-        <div className="container">
-            <div className="weekly box">
-                <h3>Weekly Tasks</h3>
-                <p id="box">{this.state.tasks}</p>
-            </div>
-            <div className="daily box">
-                <h3>Daily Target</h3>
-            </div>
-        </div>
-
-        <div id="modal" className={this.state.isOpen ? "show": "hidden"}>
-            <div className="header">
-                <h3>Add a new task</h3>
-                <h3 id='close' onClick={this.closeModal}>X</h3>
-            </div>
-
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" onChange={this.handleChange}/>
-                <button>CONFIRM</button>
-            </form>
-        </div>
-
-        <button className='add' onClick={this.openModal}>ADD TASK</button>
-      </div>
-    )
-  }
+        )
+    }
 }
 
 export default Scrumboard;

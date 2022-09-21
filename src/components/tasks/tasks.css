@@ -1,0 +1,13 @@
+.task{
+    box-shadow: 2px 2px 5px -1px rgb(109, 187, 240);
+    padding: 15px 10px;
+    margin: 2px 5px 0 1px;
+    transition: 0.5s ease-out;
+    background-color: white;
+}
+
+.task:hover{
+    box-shadow: 2px 2px 10px -1px royalblue;
+    transform: scaleY(1.1);
+    margin-top: 8px;
+}
