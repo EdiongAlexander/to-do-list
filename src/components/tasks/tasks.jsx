@@ -1,11 +1,10 @@
 import React from "react";
-import taskList from "../../static/tasks";
 import './tasks.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { useState } from "react";
 
-export default function Tasks() {
-    const [taskRoll, updateTaskRoll] = useState(taskList)
+export default function Tasks({data, deleteTask}) {
+    const [taskRoll, updateTaskRoll] = useState(data)
     const [taskSwap, updateTaskSwap] = useState([])
 
     const handleOnDragEnd = (result) => {
@@ -19,15 +18,19 @@ export default function Tasks() {
 
         const start = result.source.droppableId
         const finish = result.destination.droppableId
+        console.log("start:", start)
+        console.log("finish:", finish)
+        
 
         if (start === finish) {
             if (start === "tasket"){
 
-                const items = Array.from(taskRoll);
+                const items = Array.from(data);
                 const [reorderedItem] = items.splice(result.source.index, 1);
                 items.splice(result.destination.index, 0, reorderedItem);
-    
+
                 updateTaskRoll(items)
+                console.log(taskRoll)
             }else{
                 const items = Array.from(taskSwap);
                 const [reorderedItem] = items.splice(result.source.index, 1);
@@ -68,13 +71,13 @@ export default function Tasks() {
                             return (
                                 <div className="weekly box" {...provided.droppableProps} ref={provided.innerRef}>
                                     <h3>Weekly Tasks</h3>
-                                    {taskRoll.map(({ id, item }, index) => {
+                                    {data.map(({ id, content }, index) => {
                                         return (
                                             <Draggable key={id} draggableId={id} index={index}>
                                                 {(provided) => {
                                                     return (
                                                         <>
-                                                            <p className="task" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>{item}</p>
+                                                            <p className="task" onClick={() => {deleteTask(id)}} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>{content}</p>
                                                             {provided.placeholder}
                                                         </>
                                                     )
