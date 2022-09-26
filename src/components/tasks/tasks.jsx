@@ -3,7 +3,7 @@ import './tasks.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { useState } from "react";
 
-export default function Tasks({data, deleteTask}) {
+export default function Tasks({ data, deleteTask }) {
     const [taskRoll, updateTaskRoll] = useState(data)
     const [taskSwap, updateTaskSwap] = useState([])
 
@@ -20,10 +20,10 @@ export default function Tasks({data, deleteTask}) {
         const finish = result.destination.droppableId
         console.log("start:", start)
         console.log("finish:", finish)
-        
+
 
         if (start === finish) {
-            if (start === "tasket"){
+            if (start === "tasket") {
 
                 const items = Array.from(data);
                 const [reorderedItem] = items.splice(result.source.index, 1);
@@ -31,7 +31,7 @@ export default function Tasks({data, deleteTask}) {
 
                 updateTaskRoll(items)
                 console.log(taskRoll)
-            }else{
+            } else {
                 const items = Array.from(taskSwap);
                 const [reorderedItem] = items.splice(result.source.index, 1);
                 items.splice(result.destination.index, 0, reorderedItem);
@@ -44,17 +44,17 @@ export default function Tasks({data, deleteTask}) {
         if (start !== finish) {
             const items = Array.from(taskRoll)
             const splity = Array.from(taskSwap)
-            
+
             if (finish === "tasketer") {
                 const [extractedItem] = items.splice(result.source.index, 1);
                 splity.splice(result.destination.index, 0, extractedItem);
 
-            }else{
+            } else {
                 const [extractedItem] = splity.splice(result.source.index, 1);
                 items.splice(result.destination.index, 0, extractedItem);
             }
 
-            
+
             updateTaskRoll(items)
             updateTaskSwap(splity)
 
@@ -71,13 +71,28 @@ export default function Tasks({data, deleteTask}) {
                             return (
                                 <div className="weekly box" {...provided.droppableProps} ref={provided.innerRef}>
                                     <h3>Weekly Tasks</h3>
-                                    {data.map(({ id, content }, index) => {
+                                    <div className="scroll">
+                                    {data.map(({ id, name, time_created, scrumgoalhistory_set }, index) => {
                                         return (
                                             <Draggable key={id} draggableId={id} index={index}>
                                                 {(provided) => {
                                                     return (
                                                         <>
-                                                            <p className="task" onClick={() => {deleteTask(id)}} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>{content}</p>
+                                                            <p className="task" onClick={() => { deleteTask(id) }} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                
+                                                                {name}
+
+                                                                <div id="time">Created: {time_created.slice(0, 10)} at {time_created.slice(12, 16)}</div>
+
+                                                                <div className="blue">
+                                                                    {scrumgoalhistory_set.map(({id, done_by}) => {
+                                                                        return(
+                                                                            <p key={id}>{done_by}</p>
+                                                                        )
+                                                                    })}
+                                                                </div>
+
+                                                            </p>
                                                             {provided.placeholder}
                                                         </>
                                                     )
@@ -86,6 +101,7 @@ export default function Tasks({data, deleteTask}) {
                                             </Draggable>
                                         )
                                     })}
+                                    </div>
                                     {provided.placeholder}
                                 </div>
                             )

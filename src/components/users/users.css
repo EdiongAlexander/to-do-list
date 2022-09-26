@@ -20,3 +20,19 @@
     padding-bottom: 10px;
     color: white;
 }
+
+.scroll{
+    overflow-y: scroll;
+    height: 400px;
+}
+
+#time{
+    color: gray;
+    font-size: small;
+    font-weight: 100;
+}
+
+.blue{
+    color: royalblue;
+    font-size: smaller;
+}
